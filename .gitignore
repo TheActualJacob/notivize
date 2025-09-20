@@ -1,0 +1,13 @@
+# Ignore Google API credentials
+# Google API credentials
+src/credentials.json
+src/token.json
+# Python virtual environment
+venv/
+__pycache__/
+*.pyc
+
+# IDE/editor files
+.vscode/
+
+venv/

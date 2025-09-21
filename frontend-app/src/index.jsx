@@ -17,7 +17,7 @@ const router = createBrowserRouter(
       children: [
         {
           index: true,
-          element: <Navigate to="/inbox" replace />, // Redirect root to /inbox
+          element: <Navigate to="inbox" replace />, // Redirect root to inbox
         },
         {
           path: "inbox",
@@ -41,8 +41,7 @@ const router = createBrowserRouter(
         },
       ],
     },
-  ],
-  { basename: "/notivize" }
+  ]
 );
 
 ReactDOM.createRoot(document.getElementById('root')).render(

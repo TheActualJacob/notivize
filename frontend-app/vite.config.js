@@ -3,5 +3,5 @@ import react from "@vitejs/plugin-react";
 
 export default defineConfig({
   plugins: [react()],
-  base: "/notivize/", // hardcode to your repo name
+  base: "/", // Using root path for custom domain
 });

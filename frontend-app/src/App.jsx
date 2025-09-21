@@ -2,11 +2,26 @@ import React from 'react';
 import { NavLink, Outlet } from 'react-router-dom';
 import './styles/styles.css';
 
-const Header = () => (
-  <header className="header">
-    {/* Header content can go here, like user profile, notifications, etc. */}
-  </header>
-);
+import InboxPlaceholder from './components/InboxPlaceholder';
+
+const mockEmails = [
+  { id: 1, sender: 'GitHub', subject: 'Your weekly digest' },
+  { id: 2, sender: 'Vercel', subject: 'Deployment Succeeded: notivize-prod' },
+  { id: 3, sender: 'Team Meeting', subject: 'Sync up for Q4 Roadmap' },
+  { id: 4, sender: 'Slack', subject: 'You have a new message from John' },
+];
+
+const Header = () => {
+  const today = new Date().toLocaleDateString();
+  return (
+    <header className="header">
+      <div className="header-info-glass">
+        <span>{today}</span>
+        <span>{mockEmails.length} Emails</span>
+      </div>
+    </header>
+  );
+};
 
 const Sidebar = () => (
   <aside className="sidebar">

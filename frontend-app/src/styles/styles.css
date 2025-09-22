@@ -25,6 +25,106 @@
   backdrop-filter: var(--glass-blur);
 }
 
+.header-date,
+.header-email-count {
+  font-weight: 600;
+  color: var(--primary-text);
+}
+
+/* Workload Indicator */
+.workload-indicator {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.4rem 0.8rem;
+  border-radius: 12px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  transition: all 0.3s ease;
+  margin-left: auto;
+}
+
+.workload-indicator:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.workload-heavy {
+  background: linear-gradient(135deg, 
+    rgba(220, 38, 127, 0.2) 0%, 
+    rgba(239, 68, 68, 0.2) 100%);
+  color: #dc2626;
+  border-color: rgba(220, 38, 127, 0.3);
+  animation: workload-pulse 2s infinite;
+}
+
+.workload-heavy:hover {
+  background: linear-gradient(135deg, 
+    rgba(220, 38, 127, 0.3) 0%, 
+    rgba(239, 68, 68, 0.3) 100%);
+  box-shadow: 0 4px 12px rgba(220, 38, 127, 0.25);
+}
+
+.workload-medium {
+  background: linear-gradient(135deg, 
+    rgba(245, 158, 11, 0.2) 0%, 
+    rgba(251, 191, 36, 0.2) 100%);
+  color: #d97706;
+  border-color: rgba(245, 158, 11, 0.3);
+}
+
+.workload-medium:hover {
+  background: linear-gradient(135deg, 
+    rgba(245, 158, 11, 0.3) 0%, 
+    rgba(251, 191, 36, 0.3) 100%);
+  box-shadow: 0 4px 12px rgba(245, 158, 11, 0.25);
+}
+
+.workload-light {
+  background: linear-gradient(135deg, 
+    rgba(34, 197, 94, 0.2) 0%, 
+    rgba(59, 130, 246, 0.2) 100%);
+  color: #059669;
+  border-color: rgba(34, 197, 94, 0.3);
+}
+
+.workload-light:hover {
+  background: linear-gradient(135deg, 
+    rgba(34, 197, 94, 0.3) 0%, 
+    rgba(59, 130, 246, 0.3) 100%);
+  box-shadow: 0 4px 12px rgba(34, 197, 94, 0.25);
+}
+
+.workload-icon {
+  font-size: 1rem;
+  line-height: 1;
+}
+
+.workload-text {
+  font-size: 0.85rem;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+/* Heavy workload pulse animation */
+@keyframes workload-pulse {
+  0% {
+    box-shadow: 0 0 0 0 rgba(220, 38, 127, 0.4);
+  }
+  70% {
+    box-shadow: 0 0 0 6px rgba(220, 38, 127, 0);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(220, 38, 127, 0);
+  }
+}
+
+.workload-heavy {
+  animation: workload-pulse 2s infinite;
+}
+
 .header-info-item {
   display: flex;
   flex-direction: column;
@@ -289,15 +389,158 @@ body {
   top: 0;
   z-index: 10;
   width: 97%;
-  padding: 1rem;
-  border-radius: 16px;
-  background: rgba(255, 255, 255, 0.477);
-  backdrop-filter: blur(12px) saturate(180%);
-  box-shadow: 0 4px 24px rgba(0,0,0,0.2), 0 0 0 1px rgba(0,0,0,0.2);
-  border: 2.5px solid #000;
+  padding: 1.5rem 2rem;
+  border-radius: 24px;
+  background: linear-gradient(135deg, 
+    rgba(255, 255, 255, 0.15) 0%,
+    rgba(255, 255, 255, 0.25) 50%,
+    rgba(255, 255, 255, 0.1) 100%);
+  backdrop-filter: blur(20px) saturate(200%);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  box-shadow: 
+    0 8px 32px rgba(0, 0, 0, 0.1),
+    0 4px 16px rgba(0, 0, 0, 0.05),
+    inset 0 1px 0 rgba(255, 255, 255, 0.4),
+    inset 0 -1px 0 rgba(0, 0, 0, 0.05);
   display: flex;
   align-items: center;
   justify-content: space-between;
+  margin-bottom: 1rem;
+  transition: all 0.3s ease;
+}
+
+.emails-header:hover {
+  background: linear-gradient(135deg, 
+    rgba(255, 255, 255, 0.2) 0%,
+    rgba(255, 255, 255, 0.3) 50%,
+    rgba(255, 255, 255, 0.15) 100%);
+  box-shadow: 
+    0 12px 40px rgba(0, 0, 0, 0.15),
+    0 6px 20px rgba(0, 0, 0, 0.08),
+    inset 0 1px 0 rgba(255, 255, 255, 0.5),
+    inset 0 -1px 0 rgba(0, 0, 0, 0.05);
+}
+
+.emails-header h2 {
+  font-size: 1.8rem;
+  font-weight: 700;
+  background: linear-gradient(135deg, #1a1a1a 0%, #333333 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  margin: 0;
+  letter-spacing: -0.02em;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+}
+
+.emails-header-actions {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+/* Header Compose Button */
+.compose-button-header {
+  background: linear-gradient(135deg, 
+    rgba(0, 122, 255, 0.9) 0%,
+    rgba(0, 200, 255, 0.9) 50%,
+    rgba(0, 150, 255, 0.9) 100%);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  border-radius: 16px;
+  padding: 0.75rem 1.25rem;
+  color: white;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 
+    0 4px 16px rgba(0, 122, 255, 0.2),
+    0 2px 8px rgba(0, 122, 255, 0.1),
+    inset 0 1px 0 rgba(255, 255, 255, 0.3);
+  backdrop-filter: blur(10px);
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.9rem;
+  position: relative;
+  overflow: hidden;
+}
+
+.compose-button-header::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, 
+    transparent 0%, 
+    rgba(255, 255, 255, 0.2) 50%, 
+    transparent 100%);
+  transition: left 0.6s ease;
+}
+
+.compose-button-header:hover::before {
+  left: 100%;
+}
+
+.compose-button-header:hover {
+  transform: translateY(-2px);
+  box-shadow: 
+    0 8px 25px rgba(0, 122, 255, 0.3),
+    0 4px 12px rgba(0, 122, 255, 0.2),
+    inset 0 1px 0 rgba(255, 255, 255, 0.4);
+  background: linear-gradient(135deg, 
+    rgba(0, 100, 230, 0.95) 0%,
+    rgba(0, 180, 255, 0.95) 50%,
+    rgba(0, 130, 255, 0.95) 100%);
+}
+
+.compose-button-header:active {
+  transform: translateY(-1px);
+  transition: all 0.1s ease;
+}
+
+.compose-button-header.active {
+  background: linear-gradient(135deg, 
+    rgba(255, 59, 48, 0.9) 0%,
+    rgba(255, 149, 0, 0.9) 50%,
+    rgba(255, 99, 71, 0.9) 100%);
+  box-shadow: 
+    0 4px 16px rgba(255, 59, 48, 0.2),
+    0 2px 8px rgba(255, 59, 48, 0.1),
+    inset 0 1px 0 rgba(255, 255, 255, 0.3);
+}
+
+.compose-button-header.active:hover {
+  background: linear-gradient(135deg, 
+    rgba(230, 40, 30, 0.95) 0%,
+    rgba(230, 130, 0, 0.95) 50%,
+    rgba(230, 80, 50, 0.95) 100%);
+  box-shadow: 
+    0 8px 25px rgba(255, 59, 48, 0.3),
+    0 4px 12px rgba(255, 59, 48, 0.2),
+    inset 0 1px 0 rgba(255, 255, 255, 0.4);
+}
+
+.compose-button-header .compose-icon {
+  font-size: 1.1rem;
+  line-height: 1;
+  display: flex;
+  align-items: center;
+  width: 16px;
+  height: 16px;
+  flex-shrink: 0;
+}
+
+.compose-button-header svg.compose-icon {
+  width: 16px;
+  height: 16px;
+}
+
+.compose-button-header .compose-text {
+  font-size: 0.9rem;
+  font-weight: 600;
+  white-space: nowrap;
 }
 
 .emails-container { display: flex; gap: 1rem; }
@@ -340,6 +583,49 @@ body {
   text-overflow: ellipsis;
 }
 
+/* Email metadata (urgency indicator and timestamp) */
+.email-list-meta {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 0.25rem;
+  flex-shrink: 0;
+}
+
+.email-timestamp {
+  font-size: 0.75rem;
+  color: var(--secondary-text);
+  white-space: nowrap;
+}
+
+/* Email preview header styling */
+.email-preview-header {
+  border-bottom: 1px solid var(--border-color);
+  padding-bottom: 1rem;
+  margin-bottom: 1rem;
+}
+
+.email-preview-header h3 {
+  margin: 0 0 0.5rem 0;
+  color: var(--primary-text);
+}
+
+.email-preview-meta {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.email-preview-meta p {
+  margin: 0;
+  font-size: 0.9rem;
+  color: var(--secondary-text);
+}
+
+.email-preview-body {
+  line-height: 1.6;
+}
+
 /* Glass bubble sort control */
 .emails-header {
   gap: 0.75rem;
@@ -351,31 +637,59 @@ body {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  border: 2.5px solid #000;
-  border-radius: 999px;
-  background: rgba(255, 255, 255, 0.58);
-  box-shadow: 0 4px 18px rgba(0,0,0,0.18), 0 0 0 1px rgba(0,0,0,0.2);
-  backdrop-filter: var(--glass-blur);
-  padding: 0.4rem 2.2rem 0.4rem 0.7rem;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  border-radius: 16px;
+  background: linear-gradient(135deg, 
+    rgba(255, 255, 255, 0.1) 0%,
+    rgba(255, 255, 255, 0.2) 50%,
+    rgba(255, 255, 255, 0.05) 100%);
+  box-shadow: 
+    0 4px 16px rgba(0, 0, 0, 0.08),
+    0 2px 8px rgba(0, 0, 0, 0.04),
+    inset 0 1px 0 rgba(255, 255, 255, 0.3),
+    inset 0 -1px 0 rgba(0, 0, 0, 0.05);
+  backdrop-filter: blur(15px) saturate(180%);
+  padding: 0.6rem 2.5rem 0.6rem 1rem;
+  transition: all 0.3s ease;
+}
+
+.emails-sort-wrapper:hover {
+  background: linear-gradient(135deg, 
+    rgba(255, 255, 255, 0.15) 0%,
+    rgba(255, 255, 255, 0.25) 50%,
+    rgba(255, 255, 255, 0.1) 100%);
+  box-shadow: 
+    0 6px 20px rgba(0, 0, 0, 0.12),
+    0 3px 10px rgba(0, 0, 0, 0.06),
+    inset 0 1px 0 rgba(255, 255, 255, 0.4),
+    inset 0 -1px 0 rgba(0, 0, 0, 0.05);
 }
 
 .emails-sort-wrapper:after {
   content: '';
   position: absolute;
-  right: 10px;
-  width: 14px;
-  height: 14px;
-  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='black' viewBox='0 0 16 16'><path d='M3.3 5.5l4.2 4.2 4.2-4.2' stroke='black' stroke-width='1.5' fill='none' stroke-linecap='round' stroke-linejoin='round'/></svg>");
+  right: 12px;
+  width: 12px;
+  height: 12px;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='12' height='12' fill='none' viewBox='0 0 12 12'><path d='M3 4.5l3 3 3-3' stroke='%23666666' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'/></svg>");
   background-repeat: no-repeat;
   background-position: center;
-  background-size: 14px 14px;
+  background-size: 12px 12px;
   pointer-events: none;
+  opacity: 0.7;
+  transition: opacity 0.3s ease;
+}
+
+.emails-sort-wrapper:hover:after {
+  opacity: 1;
 }
 
 .emails-sort-wrapper .ai-label {
-  font-weight: 700;
-  color: var(--primary-text);
-  margin-left: 0.45rem;
+  font-weight: 600;
+  color: #1a1a1a;
+  margin-left: 0.5rem;
+  font-size: 0.9rem;
+  letter-spacing: -0.01em;
 }
 
 @keyframes ai-glow {
@@ -412,54 +726,36 @@ body {
 
 /* Circular AI indicator that glows in urgency mode */
 .emails-sort-wrapper .ai-dot {
-  width: 10px;
-  height: 10px;
+  width: 8px;
+  height: 8px;
   border-radius: 50%;
-  background: radial-gradient(circle at 30% 30%, #a78bfa 0%, #6366f1 60%, #4338ca 100%);
-  border: 1.5px solid rgba(0,0,0,0.85);
-  box-shadow: inset 0 0 2px rgba(255,255,255,0.7);
+  background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 50%, #a855f7 100%);
+  border: none;
+  box-shadow: 
+    0 0 0 1px rgba(255, 255, 255, 0.3),
+    0 2px 4px rgba(99, 102, 241, 0.2);
+  transition: all 0.3s ease;
 }
 
 @keyframes ai-dot-glow {
   0% {
     transform: scale(1);
     box-shadow:
-      0 0 3px rgba(34, 211, 238, 0.35),
-      0 0 8px rgba(59, 130, 246, 0.35),
-      0 0 12px rgba(147, 51, 234, 0.3),
-      inset 0 0 2px rgba(255,255,255,0.7);
-  }
-  25% {
-    transform: scale(1.05);
-    box-shadow:
-      0 0 6px rgba(34, 211, 238, 0.55),
-      0 0 12px rgba(59, 130, 246, 0.55),
-      0 0 18px rgba(217, 70, 239, 0.45),
-      inset 0 0 2px rgba(255,255,255,0.8);
+      0 0 0 1px rgba(255, 255, 255, 0.3),
+      0 2px 4px rgba(99, 102, 241, 0.2);
   }
   50% {
     transform: scale(1.1);
     box-shadow:
-      0 0 10px rgba(59, 130, 246, 0.9),
-      0 0 20px rgba(124, 58, 237, 0.85),
-      0 0 34px rgba(217, 70, 239, 0.75),
-      inset 0 0 3px rgba(255,255,255,1);
-  }
-  75% {
-    transform: scale(1.05);
-    box-shadow:
-      0 0 7px rgba(34, 211, 238, 0.6),
-      0 0 14px rgba(59, 130, 246, 0.6),
-      0 0 22px rgba(147, 51, 234, 0.55),
-      inset 0 0 2px rgba(255,255,255,0.9);
+      0 0 0 1px rgba(255, 255, 255, 0.4),
+      0 2px 8px rgba(99, 102, 241, 0.4),
+      0 0 12px rgba(139, 92, 246, 0.3);
   }
   100% {
     transform: scale(1);
     box-shadow:
-      0 0 3px rgba(34, 211, 238, 0.35),
-      0 0 8px rgba(59, 130, 246, 0.35),
-      0 0 12px rgba(147, 51, 234, 0.3),
-      inset 0 0 2px rgba(255,255,255,0.7);
+      0 0 0 1px rgba(255, 255, 255, 0.3),
+      0 2px 4px rgba(99, 102, 241, 0.2);
   }
 }
 
@@ -1144,5 +1440,449 @@ body {
 
   .main-content {
     padding: 1rem;
+  }
+}
+
+/* --- Compose Email Functionality --- */
+
+/* Floating Compose Button */
+.compose-button-wrapper {
+  position: fixed;
+  bottom: 2rem;
+  right: 4rem;
+  z-index: 1000;
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.compose-button-wrapper.expanded {
+  bottom: 50%;
+  right: 50%;
+  transform: translate(50%, 50%);
+  z-index: 1001;
+}
+
+/* Liquid Button Styles */
+.liquid-button {
+  position: relative;
+  background: linear-gradient(45deg, var(--accent-color), var(--success-color));
+  border: none;
+  border-radius: 50px;
+  padding: 1rem 1.5rem;
+  color: white;
+  font-weight: 600;
+  font-size: 1rem;
+  cursor: pointer;
+  overflow: hidden;
+  box-shadow: 0 8px 25px rgba(37, 99, 235, 0.3);
+  transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  min-width: 140px;
+}
+
+.liquid-button::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+  transition: all 0.6s ease;
+}
+
+.liquid-button:hover::before {
+  left: 100%;
+}
+
+.liquid-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 35px rgba(37, 99, 235, 0.4);
+}
+
+.liquid-button.active {
+  background: linear-gradient(45deg, var(--danger-color), var(--warning-color));
+  border-radius: 12px;
+  padding: 0.8rem 1.2rem;
+}
+
+.button-content {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  position: relative;
+  z-index: 1;
+}
+
+.draft-icon {
+  transition: all 0.3s ease;
+}
+
+.liquid-button.active .draft-icon {
+  transform: rotate(45deg);
+}
+
+.button-text {
+  font-size: 0.95rem;
+  font-weight: 600;
+}
+
+/* Compose Form Container */
+.compose-form-container {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 90vw;
+  max-width: 600px;
+  max-height: 80vh;
+  background: var(--card-background);
+  backdrop-filter: var(--glass-blur);
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  border-radius: 20px;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
+  opacity: 0;
+  visibility: hidden;
+  transform: translate(-50%, -50%) scale(0.8);
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  z-index: 1002;
+}
+
+.compose-form-container.visible {
+  opacity: 1;
+  visibility: visible;
+  transform: translate(-50%, -50%) scale(1);
+}
+
+.compose-form {
+  padding: 2rem;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.compose-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1.5rem;
+  padding-bottom: 1rem;
+  border-bottom: 2px solid rgba(255, 255, 255, 0.2);
+}
+
+.compose-header h3 {
+  margin: 0;
+  color: var(--primary-text);
+  font-size: 1.25rem;
+  font-weight: 700;
+}
+
+.close-compose {
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  color: var(--secondary-text);
+  cursor: pointer;
+  padding: 0.5rem;
+  line-height: 1;
+  transition: all 0.2s ease;
+  border-radius: 8px;
+}
+
+.close-compose:hover {
+  color: var(--danger-color);
+  background: rgba(239, 68, 68, 0.1);
+}
+
+/* Compose Form Fields */
+.compose-fields {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+  margin-bottom: 1.5rem;
+}
+
+.compose-field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  margin-bottom: 1rem; /* Extra space for suggestions */
+}
+
+.compose-field:last-child {
+  margin-bottom: 0;
+}
+
+.compose-field label {
+  font-weight: 600;
+  color: var(--primary-text);
+  font-size: 0.9rem;
+}
+
+.compose-field input,
+.compose-field textarea {
+  padding: 0.75rem 1rem;
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.8);
+  color: var(--primary-text);
+  font-size: 1rem;
+  transition: all 0.3s ease;
+  resize: none;
+}
+
+.compose-field input:focus,
+.compose-field textarea:focus {
+  outline: none;
+  border-color: var(--accent-color);
+  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+  background: rgba(255, 255, 255, 0.95);
+}
+
+.compose-body-field textarea {
+  min-height: 200px;
+  font-family: inherit;
+}
+
+.compose-body-field {
+  margin-bottom: 2rem; /* Extra space for body suggestion */
+}
+
+/* Email Suggestion Styles */
+.compose-to-container {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Input with AI suggestion button */
+.input-with-ai {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.input-with-ai input,
+.input-with-ai textarea {
+  flex: 1;
+  padding-right: 60px; /* Space for AI button */
+}
+
+/* AI Accept Button */
+.ai-accept-btn {
+  position: absolute;
+  right: 8px;
+  top: 50%;
+  transform: translateY(-50%);
+  background: linear-gradient(45deg, #6366f1, #8b5cf6);
+  border: none;
+  border-radius: 8px;
+  padding: 6px 8px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  transition: all 0.2s ease;
+  z-index: 5;
+  box-shadow: 0 2px 8px rgba(99, 102, 241, 0.2);
+}
+
+.ai-accept-btn:hover {
+  transform: translateY(-50%) scale(1.05);
+  box-shadow: 0 4px 12px rgba(99, 102, 241, 0.3);
+}
+
+.ai-accept-btn svg {
+  color: white;
+  width: 12px;
+  height: 12px;
+}
+
+.ai-label {
+  color: white;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+}
+
+/* Body field AI button positioning */
+.body-ai-btn {
+  top: 20px; /* Position near top of textarea */
+  transform: none;
+}
+
+.body-ai-btn:hover {
+  transform: scale(1.05);
+}
+
+/* Recipient suggestion appears below the input */
+.recipient-suggestion {
+  position: absolute;
+  top: calc(100% + 0.5rem);
+  left: 0;
+  right: 0;
+  background: rgba(255, 255, 255, 0.95);
+  border: 2px solid rgba(37, 99, 235, 0.3);
+  border-radius: 12px;
+  padding: 0.75rem 1rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  backdrop-filter: var(--glass-blur);
+  box-shadow: 0 4px 15px rgba(37, 99, 235, 0.15);
+  transition: all 0.2s ease;
+  z-index: 10;
+  justify-content: space-between;
+}
+
+.ai-badge {
+  background: linear-gradient(45deg, #6366f1, #8b5cf6);
+  color: white;
+  padding: 2px 6px;
+  border-radius: 4px;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+}
+
+/* General email suggestion styles */
+.email-suggestion {
+  position: absolute;
+  top: calc(100% + 0.5rem);
+  left: 0;
+  right: 0;
+  background: rgba(255, 255, 255, 0.95);
+  border: 2px solid rgba(37, 99, 235, 0.3);
+  border-radius: 12px;
+  padding: 0.75rem 1rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  backdrop-filter: var(--glass-blur);
+  box-shadow: 0 4px 15px rgba(37, 99, 235, 0.15);
+  transition: all 0.2s ease;
+  z-index: 10;
+}
+
+.email-suggestion:hover,
+.recipient-suggestion:hover {
+  background: rgba(37, 99, 235, 0.05);
+  border-color: var(--accent-color);
+  transform: translateY(-1px);
+  box-shadow: 0 6px 20px rgba(37, 99, 235, 0.2);
+}
+
+.email-suggestion svg {
+  color: var(--accent-color);
+  flex-shrink: 0;
+}
+
+.email-suggestion span {
+  color: var(--primary-text);
+  font-weight: 500;
+  font-size: 0.9rem;
+}
+
+/* Body suggestion specific styling */
+.body-suggestion span {
+  max-width: 200px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* Compose Action Buttons */
+.compose-actions {
+  display: flex;
+  gap: 1rem;
+  justify-content: flex-end;
+  padding-top: 1rem;
+  border-top: 2px solid rgba(255, 255, 255, 0.2);
+}
+
+.primary-button,
+.secondary-button {
+  padding: 0.75rem 1.5rem;
+  border-radius: 12px;
+  font-weight: 600;
+  font-size: 0.95rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  border: 2px solid transparent;
+}
+
+.primary-button {
+  background: linear-gradient(45deg, var(--accent-color), var(--success-color));
+  color: white;
+  box-shadow: 0 4px 15px rgba(37, 99, 235, 0.3);
+}
+
+.primary-button:hover:not(:disabled) {
+  transform: translateY(-1px);
+  box-shadow: 0 6px 20px rgba(37, 99, 235, 0.4);
+}
+
+.primary-button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  transform: none;
+  box-shadow: none;
+}
+
+.secondary-button {
+  background: transparent;
+  color: var(--secondary-text);
+  border-color: rgba(255, 255, 255, 0.3);
+}
+
+.secondary-button:hover {
+  background: rgba(255, 255, 255, 0.5);
+  color: var(--primary-text);
+  border-color: rgba(255, 255, 255, 0.5);
+}
+
+/* Backdrop Overlay */
+.compose-backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.3);
+  backdrop-filter: blur(4px);
+  z-index: 999;
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.3s ease;
+}
+
+.compose-backdrop.visible {
+  opacity: 1;
+  visibility: visible;
+}
+
+/* Responsive Design for Compose */
+@media (max-width: 768px) {
+  .compose-form-container {
+    width: 95vw;
+    max-height: 90vh;
+  }
+  
+  .compose-form {
+    padding: 1.5rem;
+  }
+  
+  .compose-actions {
+    flex-direction: column;
+  }
+  
+  .primary-button,
+  .secondary-button {
+    width: 100%;
+    justify-content: center;
   }
 }

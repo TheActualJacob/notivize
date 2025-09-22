@@ -1,10 +1,12 @@
+// SummaryPlaceholder: example AI-powered daily briefing panel.
+// The card uses an animated border glow to indicate AI content.
 import React from 'react';
 import '../styles/styles.css';
 
 function SummaryPlaceholder() {
   // TODO: Fetch AI-generated summary from the backend.
   return (
-    <div className="placeholder-card">
+    <div className="placeholder-card summary-card ai-border-glow">
       <h2>Inbox Summary</h2>
       <div className="mock-summary-content">
         <p>Here's your morning briefing for September 21st:</p>

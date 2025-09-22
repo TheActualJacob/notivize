@@ -1,11 +1,12 @@
+// Entry: router setup for app sections; '/' redirects to '/emails'
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import { createBrowserRouter, RouterProvider, Navigate } from 'react-router-dom';
 import App from './App';
-import InboxPlaceholder from './components/InboxPlaceholder';
+import EmailsView from './components/EmailsView';
 import CalendarPlaceholder from './components/CalendarPlaceholder';
 import SummaryPlaceholder from './components/SummaryPlaceholder';
-import UrgencyPlaceholder from './components/UrgencyPlaceholder';
+// removed UrgencyPlaceholder and InboxPlaceholder for unified view
 import ChatPlaceholder from './components/ChatPlaceholder';
 import './styles/styles.css';
 
@@ -17,11 +18,11 @@ const router = createBrowserRouter(
       children: [
         {
           index: true,
-          element: <Navigate to="inbox" replace />, // Redirect root to inbox
+          element: <Navigate to="emails" replace />, // Redirect root to emails
         },
         {
-          path: "inbox",
-          element: <InboxPlaceholder />, 
+          path: "emails",
+          element: <EmailsView />, 
         },
         {
           path: "calendar",
@@ -30,10 +31,6 @@ const router = createBrowserRouter(
         {
           path: "summary",
           element: <SummaryPlaceholder />, 
-        },
-        {
-          path: "urgency",
-          element: <UrgencyPlaceholder />, 
         },
         {
           path: "chat",

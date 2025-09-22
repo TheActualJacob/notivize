@@ -1,16 +1,11 @@
+// App: shell layout (header + sidebar + routed main content)
 import React from 'react';
 import { NavLink, Outlet } from 'react-router-dom';
 import './styles/styles.css';
 
-import InboxPlaceholder from './components/InboxPlaceholder';
+import { mockEmails } from './data/mockData';
 
-const mockEmails = [
-  { id: 1, sender: 'GitHub', subject: 'Your weekly digest' },
-  { id: 2, sender: 'Vercel', subject: 'Deployment Succeeded: notivize-prod' },
-  { id: 3, sender: 'Team Meeting', subject: 'Sync up for Q4 Roadmap' },
-  { id: 4, sender: 'Slack', subject: 'You have a new message from John' },
-];
-
+// Header: shows date and total email count
 const Header = () => {
   const today = new Date().toLocaleDateString();
   return (
@@ -23,15 +18,15 @@ const Header = () => {
   );
 };
 
+// Sidebar: navigation to main sections
 const Sidebar = () => (
   <aside className="sidebar">
     <div className="sidebar-header">Notivize</div>
     <nav>
       <ul className="sidebar-nav">
-        <li><NavLink to="/inbox">Inbox</NavLink></li>
+  <li><NavLink to="/emails">Emails</NavLink></li>
         <li><NavLink to="/calendar">Calendar</NavLink></li>
         <li><NavLink to="/summary">Summary</NavLink></li>
-        <li><NavLink to="/urgency">Urgency</NavLink></li>
         <li><NavLink to="/chat">Chat</NavLink></li>
       </ul>
     </nav>

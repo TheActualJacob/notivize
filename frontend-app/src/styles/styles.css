@@ -188,6 +188,49 @@ body {
   text-align: left;
 }
 
+/* Summary page specific card adjustments */
+.summary-card {
+  position: relative;
+}
+
+/* Animated AI border glow for summary */
+.ai-border-glow {
+  animation: ai-border-pulse 3s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+}
+
+@keyframes ai-border-pulse {
+  0% {
+    box-shadow:
+      0 4px 24px rgba(0, 0, 0, 0.2),
+      0 0 10px rgba(37, 99, 235, 0.20),
+      0 0 0 1px rgba(0,0,0,0.2);
+  }
+  25% {
+    box-shadow:
+      0 6px 24px rgba(0, 0, 0, 0.22),
+      0 0 16px rgba(59, 130, 246, 0.28),
+      0 0 0 1px rgba(0,0,0,0.22);
+  }
+  50% {
+    box-shadow:
+      0 8px 28px rgba(0, 0, 0, 0.25),
+      0 0 28px rgba(147, 51, 234, 0.40),
+      0 0 0 1px rgba(0,0,0,0.25);
+  }
+  75% {
+    box-shadow:
+      0 6px 24px rgba(0, 0, 0, 0.22),
+      0 0 18px rgba(59, 130, 246, 0.28),
+      0 0 0 1px rgba(0,0,0,0.22);
+  }
+  100% {
+    box-shadow:
+      0 4px 24px rgba(0, 0, 0, 0.2),
+      0 0 10px rgba(37, 99, 235, 0.20),
+      0 0 0 1px rgba(0,0,0,0.2);
+  }
+}
+
 .mock-summary-content {
   margin-top: 1rem;
   font-size: 1.15rem;
@@ -234,6 +277,213 @@ body {
   gap: 1rem;
 }
 
+/* Emails unified view */
+.emails-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.emails-header {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  width: 97%;
+  padding: 1rem;
+  border-radius: 16px;
+  background: rgba(255, 255, 255, 0.477);
+  backdrop-filter: blur(12px) saturate(180%);
+  box-shadow: 0 4px 24px rgba(0,0,0,0.2), 0 0 0 1px rgba(0,0,0,0.2);
+  border: 2.5px solid #000;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.emails-container { display: flex; gap: 1rem; }
+.emails-list { flex: 1; max-height: 60vh; overflow-y: auto; overflow-x: hidden; }
+.emails-preview { flex: 2; }
+
+/* Emails list: remove inner scroll and fixed widths to avoid horizontal scroll */
+.emails-list .mock-list {
+  align-items: stretch;
+  max-height: none;
+  overflow: visible;
+}
+
+.emails-list .mock-list-item {
+  width: 100%;
+  margin: 0 0 0.75rem 0;
+  text-align: left;
+  align-items: flex-start;
+  justify-content: flex-start;
+}
+
+.email-list-row {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+}
+
+.email-list-item-content {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  min-width: 0; /* allow text ellipsis */
+}
+
+.email-list-item-content .email-subject {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* Glass bubble sort control */
+.emails-header {
+  gap: 0.75rem;
+}
+
+/* Custom select wrapper with overlayed glowing label */
+.emails-sort-wrapper {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: 2.5px solid #000;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.58);
+  box-shadow: 0 4px 18px rgba(0,0,0,0.18), 0 0 0 1px rgba(0,0,0,0.2);
+  backdrop-filter: var(--glass-blur);
+  padding: 0.4rem 2.2rem 0.4rem 0.7rem;
+}
+
+.emails-sort-wrapper:after {
+  content: '';
+  position: absolute;
+  right: 10px;
+  width: 14px;
+  height: 14px;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='black' viewBox='0 0 16 16'><path d='M3.3 5.5l4.2 4.2 4.2-4.2' stroke='black' stroke-width='1.5' fill='none' stroke-linecap='round' stroke-linejoin='round'/></svg>");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 14px 14px;
+  pointer-events: none;
+}
+
+.emails-sort-wrapper .ai-label {
+  font-weight: 700;
+  color: var(--primary-text);
+  margin-left: 0.45rem;
+}
+
+@keyframes ai-glow {
+  0%, 100% {
+    text-shadow:
+      0 0 4px rgba(99, 102, 241, 0.55), /* indigo */
+      0 0 10px rgba(59, 130, 246, 0.55), /* blue */
+      0 0 18px rgba(147, 51, 234, 0.45); /* purple */
+  }
+  50% {
+    text-shadow:
+      0 0 8px rgba(99, 102, 241, 0.85),
+      0 0 18px rgba(59, 130, 246, 0.75),
+      0 0 30px rgba(147, 51, 234, 0.65);
+  }
+}
+
+.emails-sort-wrapper.is-urgency .ai-label.glow {
+  animation: ai-glow 2.2s ease-in-out infinite;
+}
+
+/* Native select made transparent above the label */
+.emails-sort-select-native {
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0; /* invisible but interactive */
+  cursor: pointer;
+}
+
+/* Circular AI indicator that glows in urgency mode */
+.emails-sort-wrapper .ai-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: radial-gradient(circle at 30% 30%, #a78bfa 0%, #6366f1 60%, #4338ca 100%);
+  border: 1.5px solid rgba(0,0,0,0.85);
+  box-shadow: inset 0 0 2px rgba(255,255,255,0.7);
+}
+
+@keyframes ai-dot-glow {
+  0% {
+    transform: scale(1);
+    box-shadow:
+      0 0 3px rgba(34, 211, 238, 0.35),
+      0 0 8px rgba(59, 130, 246, 0.35),
+      0 0 12px rgba(147, 51, 234, 0.3),
+      inset 0 0 2px rgba(255,255,255,0.7);
+  }
+  25% {
+    transform: scale(1.05);
+    box-shadow:
+      0 0 6px rgba(34, 211, 238, 0.55),
+      0 0 12px rgba(59, 130, 246, 0.55),
+      0 0 18px rgba(217, 70, 239, 0.45),
+      inset 0 0 2px rgba(255,255,255,0.8);
+  }
+  50% {
+    transform: scale(1.1);
+    box-shadow:
+      0 0 10px rgba(59, 130, 246, 0.9),
+      0 0 20px rgba(124, 58, 237, 0.85),
+      0 0 34px rgba(217, 70, 239, 0.75),
+      inset 0 0 3px rgba(255,255,255,1);
+  }
+  75% {
+    transform: scale(1.05);
+    box-shadow:
+      0 0 7px rgba(34, 211, 238, 0.6),
+      0 0 14px rgba(59, 130, 246, 0.6),
+      0 0 22px rgba(147, 51, 234, 0.55),
+      inset 0 0 2px rgba(255,255,255,0.9);
+  }
+  100% {
+    transform: scale(1);
+    box-shadow:
+      0 0 3px rgba(34, 211, 238, 0.35),
+      0 0 8px rgba(59, 130, 246, 0.35),
+      0 0 12px rgba(147, 51, 234, 0.3),
+      inset 0 0 2px rgba(255,255,255,0.7);
+  }
+}
+
+.emails-sort-wrapper.is-urgency .ai-dot {
+  animation: ai-dot-glow 2.4s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+}
+
+/* Cleaner, liquid active list item */
+.mock-list-item {
+  transition: border-color 0.18s ease, box-shadow 0.18s ease, transform 0.18s ease, background 0.18s ease;
+}
+
+.mock-list-item.active {
+  background: rgba(37, 99, 235, 0.08); /* slightly tinted when selected */
+  transform: translateY(-1px);
+  box-shadow: 0 6px 20px rgba(0,0,0,0.22), 0 0 0 1px rgba(0,0,0,0.15);
+}
+
+/* Urgent mode: color the active item's border based on urgency */
+.mock-list-item.urgent-mode.active { border-width: 2.5px; border-style: solid; }
+.mock-list-item.urgent-mode.active.urgency-high { border-color: var(--danger-color); }
+.mock-list-item.urgent-mode.active.urgency-medium { border-color: var(--warning-color); }
+.mock-list-item.urgent-mode.active.urgency-low { border-color: var(--success-color); }
+
 .inbox-header,
 .urgency-header {
   position: sticky;
@@ -270,6 +520,24 @@ body {
   flex: 1;
 }
 
+/* Inbox-specific list behavior: scroll vertically, no horizontal scroll */
+.email-list {
+  max-height: 60vh;
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+
+/* Make inbox items use full available width and align left */
+.email-list .mock-list {
+  align-items: stretch;
+}
+
+.email-list .mock-list-item {
+  width: 100%;
+  margin: 0 0 0.75rem 0;
+  text-align: left;
+}
+
 .email-preview,
 .urgency-preview {
   flex: 2;
@@ -283,6 +551,8 @@ body {
   flex-direction: column;
   align-items: center;
   gap: 0.75rem;
+  max-height: 500px;
+  overflow-y: auto;
 }
 
 .mock-list-item {
@@ -296,13 +566,13 @@ body {
   padding: 1.5rem 2rem;
   border-radius: 12px;
   margin: 0 auto 0.75rem;
-  background: rgba(255,255,255,0.38);
+  background: #ffffff; /* Solid white for unselected items */
   border: 2.5px solid #000;
   box-shadow: 0 2px 12px var(--shadow-color), 0 0 0 1px rgba(0,0,0,0.2);
   backdrop-filter: var(--glass-blur);
   color: #111;
   text-align: center;
-  transition: border-color 0.2s, box-shadow 0.2s;
+  transition: border-color 0.2s, box-shadow 0.2s, background 0.2s;
 }
 
 .mock-list-item:hover {
@@ -310,27 +580,7 @@ body {
   box-shadow: 0 4px 16px rgba(0,0,0,0.2), 0 0 0 1px rgba(0,0,0,0.3);
 }
 
-/* Active state base */
-.mock-list-item.active {
-  background: rgba(166, 200, 235, 0.95);
-  border-width: 2.5px;
-  border-style: solid;
-  transform: translateY(-1px);
-  box-shadow: 0 4px 16px rgba(0,0,0,0.25), 0 0 0 1px rgba(0,0,0,0.2);
-}
-
-/* Urgency-based active borders */
-.mock-list-item.active.urgency-high {
-  border-color: var(--danger-color);
-}
-
-.mock-list-item.active.urgency-medium {
-  border-color: var(--warning-color);
-}
-
-.mock-list-item.active.urgency-low {
-  border-color: var(--success-color);
-}
+/* Remove urgency-based active border colors; pill carries the color */
 
 .email-sender {
   font-weight: 600;
@@ -339,6 +589,132 @@ body {
 
 .email-subject {
   color: var(--secondary-text);
+}
+
+/* Urgency list centering and scroll */
+.urgency-list {
+  max-height: 60vh;
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+
+/* AI summary card inside email preview */
+.ai-summary-card {
+  margin-top: 1rem;
+  border-radius: 14px;
+  border: 2px solid #000;
+  background: rgba(255,255,255,0.9);
+  position: relative;
+  padding: 0.9rem 1.1rem;
+  overflow: hidden;
+}
+
+.ai-summary-card:before {
+  content: '';
+  position: absolute;
+  inset: -2px;
+  border-radius: 16px;
+  background: conic-gradient(
+    from 0deg,
+    #22d3ee,
+    #3b82f6,
+    #8b5cf6,
+    #d946ef,
+    #22d3ee
+  );
+  filter: blur(10px);
+  opacity: 0.55;
+  z-index: 0;
+}
+
+.ai-summary-card > * {
+  position: relative;
+  z-index: 1;
+}
+
+.ai-summary-label {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-weight: 700;
+  color: #111827;
+  margin-bottom: 0.4rem;
+}
+
+.ai-summary-content {
+  color: #1f2937;
+  font-size: 0.98rem;
+}
+
+@keyframes ai-rainbow {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/* Spin the halo only while loading */
+.ai-summary-card.loading:before {
+  animation: ai-rainbow 5.2s linear infinite;
+}
+
+/* After load, keep a border-only rainbow using mask so center stays clean */
+.ai-summary-card.loaded:before {
+  /* Create a hollow center: mask the inner area so only border glows */
+  -webkit-mask: 
+    radial-gradient(circle calc(100% - 8px), transparent 0, transparent calc(100% - 12px), black calc(100% - 12px))
+    content-box; 
+  mask: 
+    radial-gradient(circle calc(100% - 8px), transparent 0, transparent calc(100% - 12px), black calc(100% - 12px))
+    content-box;
+  opacity: 0.5;
+}
+
+/* Loading shimmer inside the card while AI summary loads */
+.ai-summary-loading {
+  position: relative;
+  z-index: 1;
+}
+
+.ai-summary-loading .line {
+  height: 10px;
+  border-radius: 6px;
+  background: linear-gradient(90deg, rgba(229,231,235,0.85) 0%, rgba(243,244,246,0.9) 40%, rgba(229,231,235,0.85) 80%);
+  margin: 8px 0;
+  overflow: hidden;
+}
+
+.ai-summary-loading .line.short {
+  width: 60%;
+}
+
+.ai-summary-loading .line:after {
+  content: '';
+  display: block;
+  height: 100%;
+  width: 35%;
+  background: linear-gradient(90deg, rgba(255,255,255,0), rgba(255,255,255,0.9), rgba(255,255,255,0));
+  animation: shimmer 1.2s infinite;
+}
+
+@keyframes shimmer {
+  0% { transform: translateX(-100%); }
+  100% { transform: translateX(260%); }
+}
+
+.urgency-list .mock-list {
+  max-height: none; /* remove inner scroll */
+  overflow: visible;
+  align-items: center; /* center items horizontally */
+  scrollbar-gutter: stable both-edges; /* keep centering stable with scrollbars */
+}
+
+.urgency-list .mock-list-item {
+  width: 100%;
+  max-width: 380px;
+  margin: 0 auto 0.75rem; /* center inside list */
+  text-align: center;
+  align-items: center;
+  justify-content: center;
+  /* This is now handled by the base .mock-list-item rule */
 }
 
 /* Calendar Placeholder */
@@ -480,9 +856,244 @@ body {
   font-size: 0.8rem;
   color: #fff;
 }
-.urgency-high { background-color: var(--danger-color); }
-.urgency-medium { background-color: var(--warning-color); }
-.urgency-low { background-color: var(--success-color); }
+.urgency-indicator.urgency-high { background-color: var(--danger-color); }
+.urgency-indicator.urgency-medium { background-color: var(--warning-color); }
+.urgency-indicator.urgency-low { background-color: var(--success-color); }
+
+/* --- Responsive Design --- */
+@media (max-width: 768px) {
+  .app-container {
+    grid-template-columns: 1fr;
+    grid-template-rows: 60px auto 1fr;
+    grid-template-areas:
+      "header"
+      "sidebar"
+      "main";
+  }
+  
+  .sidebar {
+    position: relative;
+    width: 100%;
+    height: auto;
+    flex-direction: row;
+    justify-content: center;
+    padding-top: 0;
+    border-right: none;
+    border-bottom: 1px solid var(--border-color);
+  }
+
+  .sidebar-header {
+    display: none;
+  }
+  
+  .sidebar-nav {
+    display: flex;
+  }
+  
+  .sidebar-nav a {
+    padding: 0.9rem 1rem;
+    border-left: none;
+    border-bottom: 3px solid transparent;
+  }
+
+  .sidebar-nav a.active {
+    border-left: none;
+    border-bottom: 3px solid var(--accent-color);
+  }
+
+  .header {
+    position: relative;
+    left: 0;
+    width: 100%;
+  }
+
+  .main-content {
+    padding: 1rem;
+  }
+}
+
+/* Remove urgency-based active border colors; pill carries the color */
+
+.email-sender {
+  font-weight: 600;
+  color: var(--primary-text);
+}
+
+.email-subject {
+  color: var(--secondary-text);
+}
+
+/* Urgency list centering and scroll */
+.urgency-list {
+  max-height: 60vh;
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+
+.urgency-list .mock-list {
+  max-height: none; /* remove inner scroll */
+  overflow: visible;
+  align-items: center; /* center items horizontally */
+  scrollbar-gutter: stable both-edges; /* keep centering stable with scrollbars */
+}
+
+.urgency-list .mock-list-item {
+  width: 100%;
+  max-width: 380px;
+  margin: 0 auto 0.75rem; /* center inside list */
+  text-align: center;
+  align-items: center;
+  justify-content: center;
+  background: #ffffff; /* ensure unselected are white in urgency view */
+}
+
+/* Keep selected tint consistent in urgency view */
+.urgency-list .mock-list-item.active {
+  background: rgba(37, 99, 235, 0.08);
+}
+
+/* Calendar Placeholder */
+.calendar-grid {
+  display: grid;
+  grid-template-columns: repeat(7, minmax(80px, 1fr));
+  gap: 15px;
+  margin-top: 1.5rem;
+  justify-items: center;
+}
+
+.calendar-day {
+  background: rgba(255,255,255,0.95);
+  border: 2.5px solid #000;
+  border-radius: 12px;
+  width: 100%;
+  min-width: 80px;
+  max-width: 120px;
+  height: 90px;
+  padding: 8px;
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: var(--primary-text);
+  box-shadow: 0 4px 24px rgba(0,0,0,0.2), 0 0 0 1px rgba(0,0,0,0.2);
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.calendar-day:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 28px rgba(0,0,0,0.25), 0 0 0 1px rgba(0,0,0,0.2);
+}
+
+.calendar-day.has-event {
+  background: rgba(255,255,255,0.98);
+}
+
+.calendar-date {
+  font-weight: 700;
+  margin-bottom: 4px;
+}
+
+.calendar-event {
+  font-size: 0.7rem;
+  padding: 2px 6px;
+  border-radius: 4px;
+  color: #fff;
+  font-weight: 500;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  text-align: left;
+}
+
+.calendar-event.meeting {
+  background-color: var(--accent-color);
+}
+
+.calendar-event.deadline {
+  background-color: var(--danger-color);
+}
+
+.calendar-event.reminder {
+  background-color: var(--success-color);
+}
+
+/* Chat Placeholder */
+.chat-window {
+  display: flex;
+  flex-direction: column;
+  height: 400px;
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  border-radius: 12px;
+  overflow: hidden;
+  margin-top: 1rem;
+  background: rgba(255, 255, 255, 0.75);
+  animation: rainbow-border-glow 8s linear infinite;
+  backdrop-filter: var(--glass-blur);
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.15);
+  position: relative;
+  z-index: 1;
+}
+
+.chat-messages {
+  flex-grow: 1;
+  padding: 1rem;
+  overflow-y: auto;
+  background: rgba(255,255,255,0.55);
+}
+
+.chat-message {
+  padding: 0.5rem 1rem;
+  border-radius: 12px;
+  display: inline-block;
+  max-width: max-content;
+  margin-bottom: 0.75rem;
+  line-height: 1.4;
+}
+
+.chat-message.user {
+  background-color: var(--accent-color);
+  color: #fff;
+  float: right;
+  clear: both;
+  text-align: right;
+}
+
+.chat-message.bot {
+  background: #f3f4f6;
+  color: var(--primary-text);
+  float: left;
+  clear: both;
+}
+
+.chat-input {
+  display: flex;
+  padding: 0.75rem;
+  border-top: 1px solid var(--glass-border);
+  background: rgba(255,255,255,0.6);
+}
+
+.chat-input input {
+  flex-grow: 1;
+  padding: 0.75rem;
+  border-radius: 6px;
+  border: 1px solid var(--border-color);
+  background-color: var(--background-light);
+  color: var(--primary-text);
+  font-size: 1rem;
+}
+
+/* Urgency Indicator */
+.urgency-indicator {
+  padding: 4px 10px;
+  border-radius: 12px;
+  font-weight: 600;
+  font-size: 0.8rem;
+  color: #fff;
+}
+.urgency-indicator.urgency-high { background-color: var(--danger-color); }
+.urgency-indicator.urgency-medium { background-color: var(--warning-color); }
+.urgency-indicator.urgency-low { background-color: var(--success-color); }
 
 /* --- Responsive Design --- */
 @media (max-width: 768px) {

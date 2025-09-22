@@ -556,7 +556,7 @@ body {
 
 .emails-list .mock-list-item {
   width: 100%;
-  margin: 0 0 0.75rem 0;
+  margin: 0 0 0.5rem 0; /* Reduced from 0.75rem to 0.5rem */
   text-align: left;
   align-items: flex-start;
   justify-content: flex-start;
@@ -567,20 +567,29 @@ body {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 0.75rem;
+  gap: 0.5rem; /* Reduced from 0.75rem to 0.5rem */
 }
 
 .email-list-item-content {
   display: flex;
   flex-direction: column;
-  gap: 0.25rem;
+  gap: 0.15rem; /* Reduced from 0.25rem to 0.15rem */
   min-width: 0; /* allow text ellipsis */
+  transition: gap 0.3s ease; /* Smooth gap transition */
+}
+
+/* Expand gap on hover for better readability */
+.emails-list .mock-list-item:hover .email-list-item-content {
+  gap: 0.25rem; /* Increase gap on hover */
 }
 
 .email-list-item-content .email-subject {
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+  transition: all 0.3s ease;
+  max-height: 1.2em; /* Limit to one line initially */
+  line-height: 1.2;
 }
 
 /* Email metadata (urgency indicator and timestamp) */
@@ -588,7 +597,7 @@ body {
   display: flex;
   flex-direction: column;
   align-items: flex-end;
-  gap: 0.25rem;
+  gap: 0.15rem; /* Reduced from 0.25rem to 0.15rem */
   flex-shrink: 0;
 }
 
@@ -853,22 +862,22 @@ body {
 
 .mock-list-item {
   width: 350px;
-  min-height: 100px;
+  min-height: 75px; /* Reduced from 100px to 75px */
   box-sizing: border-box;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  padding: 1.5rem 2rem;
+  padding: 1rem 1.5rem; /* Reduced from 1.5rem 2rem to 1rem 1.5rem */
   border-radius: 12px;
-  margin: 0 auto 0.75rem;
+  margin: 0 auto 0.5rem; /* Reduced from 0.75rem to 0.5rem */
   background: #ffffff; /* Solid white for unselected items */
   border: 2.5px solid #000;
   box-shadow: 0 2px 12px var(--shadow-color), 0 0 0 1px rgba(0,0,0,0.2);
   backdrop-filter: var(--glass-blur);
   color: #111;
   text-align: center;
-  transition: border-color 0.2s, box-shadow 0.2s, background 0.2s;
+  transition: all 0.3s ease; /* Extended transition to include height */
 }
 
 .mock-list-item:hover {
@@ -876,14 +885,30 @@ body {
   box-shadow: 0 4px 16px rgba(0,0,0,0.2), 0 0 0 1px rgba(0,0,0,0.3);
 }
 
+/* Specific hover effect for email list items to expand and show full subject */
+.emails-list .mock-list-item:hover {
+  min-height: auto; /* Allow natural height expansion */
+  padding: 1.5rem 1.5rem; /* Increase padding on hover */
+}
+
+.emails-list .mock-list-item:hover .email-subject {
+  white-space: normal; /* Allow text wrapping */
+  overflow: visible; /* Show full text */
+  text-overflow: unset; /* Remove ellipsis */
+  max-height: none; /* Remove height restriction */
+  line-height: 1.4; /* Improve readability for multi-line */
+}
+
 /* Remove urgency-based active border colors; pill carries the color */
 
 .email-sender {
   font-weight: 600;
+  font-size: 0.9rem; /* Slightly smaller */
   color: var(--primary-text);
 }
 
 .email-subject {
+  font-size: 0.85rem; /* Smaller subject text */
   color: var(--secondary-text);
 }
 

@@ -439,6 +439,124 @@ body {
   gap: 1rem;
 }
 
+/* Emails Search Bar */
+.emails-search-container {
+  flex: 1;
+  max-width: 400px;
+  margin: 0 1.5rem;
+}
+
+.search-input-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.search-input-wrapper::before {
+  content: '';
+  position: absolute;
+  top: -2px;
+  left: -2px;
+  right: -2px;
+  bottom: -2px;
+  border-radius: 18px;
+  background: linear-gradient(45deg, 
+    #6366f1, #8b5cf6, #d946ef, #f97316, 
+    #eab308, #22c55e, #06b6d4, #3b82f6, #6366f1);
+  background-size: 300% 300%;
+  animation: ai-search-border 4s ease-in-out infinite;
+  z-index: 0;
+  opacity: 0.8;
+}
+
+@keyframes ai-search-border {
+  0% {
+    background-position: 0% 50%;
+  }
+  25% {
+    background-position: 100% 50%;
+  }
+  50% {
+    background-position: 100% 100%;
+  }
+  75% {
+    background-position: 0% 100%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+.emails-search-input {
+  width: 100%;
+  padding: 0.75rem 1rem 0.75rem 2.5rem;
+  border: none; /* Remove border since we have animated border */
+  border-radius: 16px;
+  background: linear-gradient(135deg, 
+    rgba(255, 255, 255, 0.9) 0%,
+    rgba(255, 255, 255, 0.95) 50%,
+    rgba(255, 255, 255, 0.9) 100%);
+  backdrop-filter: blur(15px) saturate(180%);
+  box-shadow: 
+    0 2px 8px rgba(0, 0, 0, 0.05),
+    inset 0 1px 0 rgba(255, 255, 255, 0.3);
+  color: #1a1a1a;
+  font-size: 0.9rem;
+  transition: all 0.3s ease;
+  outline: none;
+  position: relative;
+  z-index: 1;
+}
+
+.emails-search-input::placeholder {
+  color: #666666;
+  opacity: 0.8;
+}
+
+.emails-search-input:focus {
+  background: linear-gradient(135deg, 
+    rgba(255, 255, 255, 0.95) 0%,
+    rgba(255, 255, 255, 1) 50%,
+    rgba(255, 255, 255, 0.95) 100%);
+  box-shadow: 
+    0 4px 12px rgba(0, 0, 0, 0.08),
+    0 0 0 3px rgba(99, 102, 241, 0.1),
+    inset 0 1px 0 rgba(255, 255, 255, 0.4);
+}
+
+.search-input-wrapper:focus-within::before {
+  animation-duration: 2s; /* Speed up animation on focus */
+  opacity: 1; /* Make border more visible on focus */
+}
+
+.search-icon {
+  position: absolute;
+  left: 0.75rem;
+  color: #666666;
+  pointer-events: none;
+  z-index: 2;
+}
+
+.search-clear-btn {
+  position: absolute;
+  right: 0.5rem;
+  background: none;
+  border: none;
+  color: #666666;
+  cursor: pointer;
+  padding: 0.25rem;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s ease;
+}
+
+.search-clear-btn:hover {
+  background: rgba(0, 0, 0, 0.1);
+  color: #333333;
+}
+
 /* Header Compose Button */
 .compose-button-header {
   background: linear-gradient(135deg, 

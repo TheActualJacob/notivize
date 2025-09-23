@@ -35,6 +35,8 @@ function EmailsView() {
   // AI suggestions for subject and body (placeholder data for now)
   const [subjectSuggestion, setSubjectSuggestion] = useState('');
   const [bodySuggestion, setBodySuggestion] = useState('');
+  // Search functionality
+  const [searchQuery, setSearchQuery] = useState('');
 
   // Placeholder suggestion data (will be replaced with AI later)
   const subjectSuggestions = [
@@ -267,6 +269,35 @@ function EmailsView() {
 
       <div className="emails-header">
         <h2>Emails</h2>
+        
+        {/* Search Bar */}
+        <div className="emails-search-container">
+          <div className="search-input-wrapper">
+            <svg className="search-icon" width="16" height="16" viewBox="0 0 24 24" fill="none">
+              <circle cx="11" cy="11" r="8" stroke="currentColor" strokeWidth="2"/>
+              <path d="m21 21-4.35-4.35" stroke="currentColor" strokeWidth="2" strokeLinecap="round"/>
+            </svg>
+            <input
+              type="text"
+              className="emails-search-input"
+              placeholder="Search emails by sender, subject, or content..."
+              value={searchQuery}
+              onChange={(e) => setSearchQuery(e.target.value)}
+              aria-label="Search emails"
+            />
+            {searchQuery && (
+              <button 
+                className="search-clear-btn"
+                onClick={() => setSearchQuery('')}
+                aria-label="Clear search"
+              >
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none">
+                  <path d="M18 6L6 18M6 6l12 12" stroke="currentColor" strokeWidth="2" strokeLinecap="round"/>
+                </svg>
+              </button>
+            )}
+          </div>
+        </div>
         
         <div className="emails-header-actions">
           <div className={`emails-sort-wrapper ${sortBy === 'urgency' ? 'is-urgency' : ''}`}>

@@ -1064,29 +1064,31 @@ body {
 .ai-summary-card {
   margin-top: 1rem;
   border-radius: 14px;
-  border: 2px solid #000;
+  border: 3px solid transparent;
   background: rgba(255,255,255,0.9);
   position: relative;
   padding: 0.9rem 1.1rem;
-  overflow: hidden;
+  background-clip: padding-box;
 }
 
 .ai-summary-card:before {
   content: '';
   position: absolute;
-  inset: -2px;
-  border-radius: 16px;
+  inset: 0;
+  border-radius: 14px;
+  padding: 3px;
   background: conic-gradient(
-    from 0deg,
+    from var(--gradient-angle, 0deg),
     #22d3ee,
     #3b82f6,
     #8b5cf6,
     #d946ef,
+    #f59e0b,
+    #10b981,
     #22d3ee
   );
-  filter: blur(10px);
-  opacity: 0.55;
-  z-index: 0;
+  margin: -3px;
+  z-index: -1;
 }
 
 .ai-summary-card > * {
@@ -1109,25 +1111,27 @@ body {
 }
 
 @keyframes ai-rainbow {
-  0% { transform: rotate(0deg); }
-  100% { transform: rotate(360deg); }
+  0% { --gradient-angle: 0deg; }
+  100% { --gradient-angle: 360deg; }
 }
 
-/* Spin the halo only while loading */
+@keyframes color-flush {
+  0% { --gradient-angle: 0deg; }
+  25% { --gradient-angle: 90deg; }
+  50% { --gradient-angle: 180deg; }
+  75% { --gradient-angle: 270deg; }
+  100% { --gradient-angle: 360deg; }
+}
+
+/* Create a smooth color flush effect while loading */
 .ai-summary-card.loading:before {
-  animation: ai-rainbow 5.2s linear infinite;
+  animation: color-flush 3s ease-in-out infinite;
 }
 
-/* After load, keep a border-only rainbow using mask so center stays clean */
+/* Keep the border static after loading */
 .ai-summary-card.loaded:before {
-  /* Create a hollow center: mask the inner area so only border glows */
-  -webkit-mask: 
-    radial-gradient(circle calc(100% - 8px), transparent 0, transparent calc(100% - 12px), black calc(100% - 12px))
-    content-box; 
-  mask: 
-    radial-gradient(circle calc(100% - 8px), transparent 0, transparent calc(100% - 12px), black calc(100% - 12px))
-    content-box;
-  opacity: 0.5;
+  animation: none;
+  --gradient-angle: 45deg;
 }
 
 /* Loading shimmer inside the card while AI summary loads */

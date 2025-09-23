@@ -8,7 +8,7 @@ import { mockEmails, formatEmailDate } from '../data/mockData';
 
 // Options for the sort dropdown
 const sortOptions = [
-  { value: 'urgency', label: 'Urgency' },
+  { value: 'urgency', label: 'Priority' },
   { value: 'chronological', label: 'Chronological' },
 ];
 

@@ -108,6 +108,29 @@
   white-space: nowrap;
 }
 
+/* Sent Email Specific Styles */
+.email-status {
+  font-size: 0.7rem;
+  color: #22c55e;
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  gap: 0.2rem;
+}
+
+.sent-status {
+  background: linear-gradient(135deg, rgba(34, 197, 94, 0.1), rgba(34, 197, 94, 0.05));
+  padding: 0.2rem 0.5rem;
+  border-radius: 8px;
+  border: 1px solid rgba(34, 197, 94, 0.2);
+}
+
+.email-status-detail {
+  color: #22c55e;
+  font-weight: 600;
+  text-transform: capitalize;
+}
+
 /* Heavy workload pulse animation */
 @keyframes workload-pulse {
   0% {

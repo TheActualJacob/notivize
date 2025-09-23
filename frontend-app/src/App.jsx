@@ -47,6 +47,7 @@ const Sidebar = () => (
     <nav>
       <ul className="sidebar-nav">
   <li><NavLink to="/emails">Emails</NavLink></li>
+        <li><NavLink to="/sent">Sent</NavLink></li>
         <li><NavLink to="/calendar">Calendar</NavLink></li>
         <li><NavLink to="/summary">Summary</NavLink></li>
         <li><NavLink to="/chat">Chat</NavLink></li>

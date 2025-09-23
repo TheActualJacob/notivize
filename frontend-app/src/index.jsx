@@ -4,6 +4,7 @@ import ReactDOM from 'react-dom/client';
 import { createBrowserRouter, RouterProvider, Navigate } from 'react-router-dom';
 import App from './App';
 import EmailsView from './components/EmailsView';
+import SentView from './components/SentView';
 import CalendarPlaceholder from './components/CalendarPlaceholder';
 import SummaryPlaceholder from './components/SummaryPlaceholder';
 // removed UrgencyPlaceholder and InboxPlaceholder for unified view
@@ -23,6 +24,10 @@ const router = createBrowserRouter(
         {
           path: "emails",
           element: <EmailsView />, 
+        },
+        {
+          path: "sent",
+          element: <SentView />, 
         },
         {
           path: "calendar",
